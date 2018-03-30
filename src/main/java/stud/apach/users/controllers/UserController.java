@@ -36,7 +36,7 @@ public class UserController {
     @GetMapping("/users/add")
     public ModelAndView add(UserForm userForm) {
         ModelAndView view = new ModelAndView();
-        view.addObject("genderList", userService.getGenderList());
+        view.addObject("genderList", Gender.getAllGenders());
         view.setViewName("add-user");
 
         return view;
@@ -48,7 +48,7 @@ public class UserController {
 
         if (bindingResult.hasErrors()) {
             view.addObject("userForm", userForm);
-            view.addObject("genderList", userService.getGenderList());
+            view.addObject("genderList", Gender.getAllGenders());
             view.setViewName("add-user");
         } else {
             userService.createUser(userForm);
@@ -71,7 +71,6 @@ public class UserController {
 
     @GetMapping("/users/{userId}/edit")
     public ModelAndView edit(@PathVariable("userId") long userId) {
-        List<Gender> genderList = userService.getGenderList();
         User currentUser = userService.selectUserById(userId);
         UserForm userForm = new UserForm();
 
@@ -80,7 +79,7 @@ public class UserController {
         userForm.setGender(currentUser.getGender());
 
         ModelAndView view = new ModelAndView();
-        view.addObject("genderList", genderList);
+        view.addObject("genderList", Gender.getAllGenders());
         view.addObject("userForm", userForm);
         view.addObject("userId", userId);
         view.setViewName("edit-user");
@@ -95,7 +94,7 @@ public class UserController {
 
         if (bindingResult.hasErrors()) {
             view.addObject("userForm", userForm);
-            view.addObject("genderList", userService.getGenderList());
+            view.addObject("genderList", Gender.getAllGenders());
             view.setViewName("edit-user");
         } else {
             userService.updateUser(userForm, userId);

@@ -13,5 +13,4 @@ public interface UserService {
     User selectUserById(Long id);
     User updateUser(UserForm userForm, long userId);
     void deleteUser(long userId);
-    List<Gender> getGenderList();
 }
