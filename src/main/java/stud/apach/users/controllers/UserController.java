@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import stud.apach.users.model.Gender;
 import stud.apach.users.model.User;
-import stud.apach.users.services.UserService;
+import stud.apach.users.services.UserServiceImpl;
 import stud.apach.users.validate.UserForm;
 
 import javax.validation.Valid;
@@ -20,7 +20,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
     @GetMapping("/users")
     public ModelAndView index() {
